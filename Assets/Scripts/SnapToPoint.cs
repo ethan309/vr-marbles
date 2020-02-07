@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Valve.VR.InteractionSystem.Sample
 {
     public class SnapToPoint : MonoBehaviour, Resetable
     {
         private bool shouldReset;
+        private GameObject centerpoint;
         private Vector3 snapTo;
         private Quaternion snapAngle;
         private Rigidbody body;
@@ -18,6 +18,12 @@ namespace Valve.VR.InteractionSystem.Sample
 
         bool Resetable.hit => transform.gameObject.activeSelf;
 
+        private void RecordSnapPosition()
+        {
+            snapTo = transform.TransformDirection(transform.position);
+            snapAngle = transform.rotation;
+        }
+
         public void ToggleReset(bool status)
         {
             shouldReset = status;
@@ -27,10 +33,17 @@ namespace Valve.VR.InteractionSystem.Sample
             }
         }
 
+        public void TriggerRearrange(float newX, float newZ)
+        {
+            Vector3 newPosition = new Vector3(newX, transform.position.y, newZ);
+            transform.SetPositionAndRotation(newPosition, transform.rotation);
+            RecordSnapPosition();
+        }
+
         private void Start()
         {
-            snapTo = transform.TransformDirection(transform.position);
-            snapAngle = transform.rotation;
+            RecordSnapPosition();
+            centerpoint = GameObject.FindGameObjectsWithTag("Centerpoint")[0];
             shouldReset = false;
             interactable = GetComponent<Interactable>();
             body = GetComponent<Rigidbody>();
@@ -77,6 +90,14 @@ namespace Valve.VR.InteractionSystem.Sample
 
                     transform.position = Vector3.Lerp(transform.position, snapTo, Time.fixedDeltaTime * t * 3);
                     transform.rotation = Quaternion.Slerp(transform.rotation, snapAngle, Time.fixedDeltaTime * t * 2);
+                }
+            }
+            else
+            {
+                float separation = Vector3.Distance(centerpoint.transform.position, transform.position);
+                if(separation > 6.1)
+                {
+                    transform.gameObject.SetActive(false);
                 }
             }
         }

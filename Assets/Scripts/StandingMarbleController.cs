@@ -12,15 +12,15 @@ public class StandingMarbleController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        centerpoint = GameObject.FindGameObjectsWithTag("Centerpoint")[0];
+        //centerpoint = GameObject.FindGameObjectsWithTag("Centerpoint")[0];
     }
 
     private void FixedUpdate()
     {
-        float separation = Vector3.Distance(centerpoint.transform.position, transform.position);
-        if(separation > 6.1)
-        {
-            transform.gameObject.SetActive(false);
-        }
+        // float separation = Vector3.Distance(centerpoint.transform.position, transform.position);
+        // if(separation > 6.1)
+        // {
+        //     transform.gameObject.SetActive(false);
+        // }
     }
 }
