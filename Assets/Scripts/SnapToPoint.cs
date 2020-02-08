@@ -20,8 +20,13 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void RecordSnapPosition()
         {
-            snapTo = transform.TransformDirection(transform.position);
-            snapAngle = transform.rotation;
+            RecordSnapPosition(transform.position, transform.rotation);
+        }
+
+        private void RecordSnapPosition(Vector3 position, Quaternion rotation)
+        {
+            snapTo = transform.TransformDirection(position);
+            snapAngle = rotation;
         }
 
         public void ToggleReset(bool status)

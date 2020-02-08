@@ -19,7 +19,7 @@ public class ResetPins : MonoBehaviour
         List<Vector2> points = new List<Vector2>();
         while(points.Count < marbleCount) {
             Vector2 newPoint = UnityEngine.Random.insideUnitCircle * 5;
-            if(points.Any(point => Vector3.Distance(point, newPoint) < 0.5))
+            if(!points.Any(point => Vector3.Distance(point, newPoint) < 0.5))
             {
                 points.Add(newPoint);
             }
@@ -58,6 +58,12 @@ public class ResetPins : MonoBehaviour
             {
                 marble.GetComponent<Resetable>().ToggleReset(true);
             }
+            print("HIT HERE");
+            List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
+            for (int i = 0; i < marbles.Count(); i++)
+            {
+                marbles[i].GetComponent<Resetable>().TriggerRearrange(newPoints[i].x, newPoints[i].y);
+            }
         }
     } 
 
@@ -84,6 +90,7 @@ public class ResetPins : MonoBehaviour
             {
                 marble.GetComponent<Resetable>().ToggleReset(true);
             }
+            print("HIT HERE");
             List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
             for (int i = 0; i < marbles.Count(); i++)
             {
