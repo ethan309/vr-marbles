@@ -85,6 +85,7 @@ public class ResetPins : MonoBehaviour
         print("Triggerred");
         if (other.gameObject.CompareTag("Player"))
         {
+            print("Triggerred");
             score = 0;
             foreach (GameObject marble in marbles)
             {

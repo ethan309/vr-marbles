@@ -25,7 +25,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void RecordSnapPosition(Vector3 position, Quaternion rotation)
         {
-            snapTo = transform.TransformDirection(position);
+            snapTo = position;
             snapAngle = rotation;
         }
 
@@ -40,7 +40,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void TriggerRearrange(float newX, float newZ)
         {
-            Vector3 newPosition = new Vector3(newX, transform.position.y, newZ);
+            Vector3 newPosition = new Vector3(newX, 0.3F, newZ);
             transform.SetPositionAndRotation(newPosition, transform.rotation);
             RecordSnapPosition();
         }
