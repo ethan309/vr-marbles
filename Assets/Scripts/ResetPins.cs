@@ -52,13 +52,11 @@ public class ResetPins : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.R))
         {
-            print("Triggerred (keyboard)");
             score = 0;
             foreach (GameObject marble in marbles)
             {
                 marble.GetComponent<Resetable>().ToggleReset(true);
             }
-            print("HIT HERE");
             List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
             for (int i = 0; i < marbles.Count(); i++)
             {
@@ -82,16 +80,13 @@ public class ResetPins : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Triggerred");
         if (other.gameObject.CompareTag("Player"))
         {
-            print("Triggerred");
             score = 0;
             foreach (GameObject marble in marbles)
             {
                 marble.GetComponent<Resetable>().ToggleReset(true);
             }
-            print("HIT HERE");
             List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
             for (int i = 0; i < marbles.Count(); i++)
             {
