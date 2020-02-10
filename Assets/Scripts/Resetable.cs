@@ -9,4 +9,6 @@ public interface Resetable
     bool hit { get; }
 
     void ToggleReset(bool status);
+
+    void TriggerRearrange(float newX, float newZ);
 }

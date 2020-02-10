@@ -3,37 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ResetPins : MonoBehaviour
 {
     private GameObject[] marbles;
 
-    public int winningScore;
-    public int score;
+    private int winningScore;
+    private int score;
 
-    public Text scoreDisplayText;
-    public Text endgameMessage;
+    // public Text scoreDisplayText;
+    // public Text endgameMessage;
+
+    List<Vector2> GenerateRingPoints(int marbleCount) {
+        List<Vector2> points = new List<Vector2>();
+        while(points.Count < marbleCount) {
+            const int ringSize = 5;
+            const float minSeparation = 0.5F;
+            Vector2 newPoint = UnityEngine.Random.insideUnitCircle * ringSize;
+            if(!points.Any(point => Vector3.Distance(point, newPoint) < minSeparation))
+            {
+                points.Add(newPoint);
+            }
+        }
+        return points;
+    }
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         marbles = GameObject.FindGameObjectsWithTag("Standing Marble");
-        endgameMessage.text = "";
+        winningScore = marbles.Count();
+        //endgameMessage.text = "";
     }
 
     void UpdateScore(int newScore)
     {
         score = newScore;
-        scoreDisplayText.text = "Score: " + score.ToString();
+        //scoreDisplayText.text = "Score: " + score.ToString();
         if (score >= winningScore)
         {
-            endgameMessage.text = "Please Reset Marbles";
+            //print("WINNER: " + score + "/" + winningScore);
+            //endgameMessage.text = "Please Reset Marbles";
         }
         else
         {
-            endgameMessage.text = "";
+            //print("NEW SCORE: " + score);
+            //endgameMessage.text = "";
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            score = 0;
+            foreach (GameObject marble in marbles)
+            {
+                marble.GetComponent<Resetable>().ToggleReset(true);
+            }
+            List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
+            for (int i = 0; i < marbles.Count(); i++)
+            {
+                marbles[i].GetComponent<Resetable>().TriggerRearrange(newPoints[i].x, newPoints[i].y);
+            }
+        }
+    } 
 
     private void FixedUpdate()
     {
@@ -50,13 +85,17 @@ public class ResetPins : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Triggerred");
         if (other.gameObject.CompareTag("Player"))
         {
             score = 0;
             foreach (GameObject marble in marbles)
             {
                 marble.GetComponent<Resetable>().ToggleReset(true);
+            }
+            List<Vector2> newPoints = GenerateRingPoints(marbles.Count());
+            for (int i = 0; i < marbles.Count(); i++)
+            {
+                marbles[i].GetComponent<Resetable>().TriggerRearrange(newPoints[i].x, newPoints[i].y);
             }
         }
     }
