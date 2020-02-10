@@ -41,8 +41,9 @@ namespace Valve.VR.InteractionSystem.Sample
         public void TriggerRearrange(float newX, float newZ)
         {
             Vector3 newPosition = new Vector3(newX, 0.3F, newZ);
-            transform.SetPositionAndRotation(newPosition, transform.rotation);
-            RecordSnapPosition();
+            // transform.SetPositionAndRotation(newPosition, transform.rotation);
+            RecordSnapPosition(newPosition, transform.rotation);
+            ToggleReset(true);
         }
 
         private void Start()
