@@ -18,8 +18,10 @@ public class ResetPins : MonoBehaviour
     List<Vector2> GenerateRingPoints(int marbleCount) {
         List<Vector2> points = new List<Vector2>();
         while(points.Count < marbleCount) {
-            Vector2 newPoint = UnityEngine.Random.insideUnitCircle * 5;
-            if(!points.Any(point => Vector3.Distance(point, newPoint) < 0.5))
+            const int ringSize = 5;
+            const float minSeparation = 0.5F;
+            Vector2 newPoint = UnityEngine.Random.insideUnitCircle * ringSize;
+            if(!points.Any(point => Vector3.Distance(point, newPoint) < minSeparation))
             {
                 points.Add(newPoint);
             }
