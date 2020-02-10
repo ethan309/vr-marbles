@@ -16,7 +16,7 @@ namespace Valve.VR.InteractionSystem.Sample
         private float dropTimer;
         private Interactable interactable;
 
-        bool Resetable.hit => transform.gameObject.activeSelf;
+        bool Resetable.hit => !transform.gameObject.activeSelf;
 
         private void RecordSnapPosition()
         {

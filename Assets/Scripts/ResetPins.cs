@@ -9,8 +9,8 @@ public class ResetPins : MonoBehaviour
 {
     private GameObject[] marbles;
 
-    public int winningScore;
-    public int score;
+    private int winningScore;
+    private int score;
 
     // public Text scoreDisplayText;
     // public Text endgameMessage;
@@ -31,6 +31,7 @@ public class ResetPins : MonoBehaviour
     void Start()
     {
         marbles = GameObject.FindGameObjectsWithTag("Standing Marble");
+        winningScore = marbles.Count();
         //endgameMessage.text = "";
     }
 
@@ -40,10 +41,12 @@ public class ResetPins : MonoBehaviour
         //scoreDisplayText.text = "Score: " + score.ToString();
         if (score >= winningScore)
         {
+            //print("WINNER: " + score + "/" + winningScore);
             //endgameMessage.text = "Please Reset Marbles";
         }
         else
         {
+            //print("NEW SCORE: " + score);
             //endgameMessage.text = "";
         }
     }
