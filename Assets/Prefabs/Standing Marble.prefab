@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4084974282323412244}
   - component: {fileID: 3340261059173367688}
   - component: {fileID: 2723693977934273605}
+  - component: {fileID: 183712029}
   m_Layer: 0
   m_Name: Standing Marble
   m_TagString: Standing Marble
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e95a19e542104df29a4b7e6cf3e0615, type: 2}
+  - {fileID: 2100000, guid: bef0dd065b5774ed9839c036a4033767, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0653d270baf4441844232c2770afc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &2723693977934273605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +246,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapTime: 2
+--- !u!45 &183712029
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566958605588650573}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
