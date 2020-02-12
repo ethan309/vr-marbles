@@ -23,7 +23,7 @@ public class CallBall : MonoBehaviour
         bool gripPressed = gripAction.state;
         if(gripPressed)
         {
-            Vector3 newPosition = new Vector3(transform.position.x, 200, transform.position.z);
+            Vector3 newPosition = new Vector3(transform.position.x, 0.5F, transform.position.z);
             shooter.transform.SetPositionAndRotation(transform.position, transform.rotation);
         }
     }
