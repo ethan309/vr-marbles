@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 using System.Linq;
 
 public class ResetPins : MonoBehaviour
@@ -12,7 +13,7 @@ public class ResetPins : MonoBehaviour
     private int winningScore;
     private int score;
 
-    // public Text scoreDisplayText;
+    public TextMeshProUGUI playerScoreDisplayText;
     // public Text endgameMessage;
 
     List<Vector2> GenerateRingPoints(int marbleCount) {
@@ -40,7 +41,7 @@ public class ResetPins : MonoBehaviour
     void UpdateScore(int newScore)
     {
         score = newScore;
-        //scoreDisplayText.text = "Score: " + score.ToString();
+        playerScoreDisplayText.text = "Score: " + score.ToString() + "/" + winningScore.ToString();
         if (score >= winningScore)
         {
             //print("WINNER: " + score + "/" + winningScore);
