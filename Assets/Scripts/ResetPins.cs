@@ -44,8 +44,7 @@ public class ResetPins : MonoBehaviour
         playerScoreDisplayText.text = "Score: " + score.ToString() + "/" + winningScore.ToString();
         if (score >= winningScore)
         {
-            //print("WINNER: " + score + "/" + winningScore);
-            //endgameMessage.text = "Please Reset Marbles";
+            playerScoreDisplayText.text = "Score: " + score.ToString() + "/" + winningScore.ToString() + "\n" + "GAME OVER. PLEASE RESET MARBLES.";
         }
         else
         {
